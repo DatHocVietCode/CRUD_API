@@ -29,6 +29,8 @@ public class Product implements Serializable {
     private String description;
     @Column(nullable = false)
     private double discount;
+    @Column
+    private int soldQuantity;
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "YYYY-MM-DD hh:mi:ss")
     private Date createDate;

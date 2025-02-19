@@ -64,6 +64,12 @@ public class CategoryServiceImpl implements ICategoryService {
     public Optional<Category> findById(Long id) {
         return categoryRepository.findById(id);
     }
+
+    @Override
+    public Optional<Category> findByIdWithProducts(Long id) {
+        return categoryRepository.findByIdWithProducts(id);
+    }
+
     @Override
     public <S extends Category> Optional<S> findOne(Example<S> example) {
         return categoryRepository.findOne(example);

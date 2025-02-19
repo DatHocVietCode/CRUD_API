@@ -15,6 +15,7 @@ public interface ICategoryService {
     long count();
     <S extends Category> Optional<S> findOne(Example<S> example);
     Optional<Category> findById(Long id);
+    Optional<Category> findByIdWithProducts(Long id);
     List<Category> findAllById(Iterable<Long> ids);
     List<Category> findAll(Sort sort);
     Page<Category> findAll(Pageable pageable);
