@@ -4,6 +4,7 @@ import org.example.entity.Category;
 import org.example.entity.Product;
 import org.example.model.Response;
 import org.example.service.ICategoryService;
+import org.example.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,6 +12,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,6 +21,8 @@ import java.util.Set;
 public class CategoryAPIController {
     @Autowired
     private ICategoryService categoryService;
+    @Autowired
+    private IProductService productService;
     @GetMapping
     public ResponseEntity<?> getAllCategory() {
         //return ResponseEntity.ok().body(categoryService.findAll());
@@ -44,8 +48,8 @@ public class CategoryAPIController {
         System.out.println(category);
         if (category.isPresent())
         {
-            Set<Product> products = category.get().getProducts();
-            System.out.println(products);
+            Set<Product> products = productService.findByCategory(category.get());
+            System.out.println(category.get());
             if (!products.isEmpty())
             {
                 return new ResponseEntity<Response>(new Response(true, "Success", products), HttpStatus.OK);
